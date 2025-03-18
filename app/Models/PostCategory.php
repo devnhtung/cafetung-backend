@@ -1,0 +1,17 @@
+<?php
+// app/Models/PostCategory.php
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class PostCategory extends Model
+{
+    protected $table = 'post_categories';
+
+    protected $fillable = ['name', 'slug', 'description'];
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'post_category', 'category_id', 'post_id');
+    }
+}
