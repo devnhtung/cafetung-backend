@@ -21,6 +21,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Actions\CreateAction;
+use Forms\Components\Toggle;
 
 class ProductResource extends Resource
 {
@@ -50,7 +51,7 @@ class ProductResource extends Resource
                 ImageColumn::make('image')->label('Hình'),
                 TextColumn::make('name'),
                 TextColumn::make('category.name'),
-                TextColumn::make('price')->money('usd'),
+                TextColumn::make('price')->money('vnd'),
                 IconColumn::make('is_available')
                     ->label('Đang bán')
                     ->boolean()
@@ -59,7 +60,8 @@ class ProductResource extends Resource
 
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('category_id')
+                    ->relationship('category', 'name')
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
