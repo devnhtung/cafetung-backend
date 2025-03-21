@@ -9,6 +9,8 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostCategoryController;
+// use App\Http\Controllers\Auth\ZaloAuthController;
+use App\Http\Controllers\SocialAuthController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -28,3 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/sliders', [SliderController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/categories', [CategoryController::class, 'index']);
+// Route::get('/auth/zalo', [ZaloAuthController::class, 'redirectToZalo']);
+// Route::get('/auth/zalo/callback', [ZaloAuthController::class, 'handleZaloCallback']);
+Route::get('/auth/zalo', [SocialAuthController::class, 'redirectToZalo']);
+Route::get('/auth/zalo/callback', [SocialAuthController::class, 'handleZaloCallback']);

@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\MarkdownEditor;
 
 class CategoryResource extends Resource
 {
@@ -24,8 +25,8 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required(),
-                TextInput::make('description')->columnSpan(2),
+                TextInput::make('name')->label('Tên')->required(),
+                MarkdownEditor::make('description')->label('Mô tả')->columnSpan(2)
             ]);
     }
 

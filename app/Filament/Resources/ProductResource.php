@@ -21,7 +21,9 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Actions\CreateAction;
-use Forms\Components\Toggle;
+use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\MarkdownEditor;
 
 class ProductResource extends Resource
 {
@@ -33,14 +35,19 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Select::make('category_id')
-                    ->relationship('category', 'name')
-                    ->required(),
-                TextInput::make('name')->required(),
-                TextInput::make('description')->columnSpan(2),
-                TextInput::make('price')->numeric()->required(),
-                FileUpload::make('image')->image(),
-                Forms\Components\Toggle::make('is_available')->default(true),
+
+                FileUpload::make('image')->image()->label("Hình"),
+                Group::make()
+                    ->schema([
+                        Select::make('category_id')
+                            ->relationship('category', 'name')
+                            ->label("Danh mục")
+                            ->required(),
+                        TextInput::make('name')->label('tên')->required(),
+                        MarkdownEditor::make('description')->label('Mô tả')->columnSpan(2),
+                        TextInput::make('price')->label('giá')->numeric()->required(),
+                        Toggle::make('is_available')->label('Hoạt động')->default(true),
+                    ]),
             ]);
     }
 
@@ -49,20 +56,20 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('image')->label('Hình'),
-                TextColumn::make('name'),
-                TextColumn::make('category.name'),
-                TextColumn::make('price')->money('vnd'),
+                TextColumn::make('name')->label('Tên')->searchable(),
+                TextColumn::make('category.name')->label('Danh mục')->searchable(),
+                TextColumn::make('price')->money('vnd')->label('Giá'),
                 IconColumn::make('is_available')
                     ->label('Đang bán')
                     ->boolean()
                     ->trueIcon('heroicon-o-check-circle')
                     ->falseIcon('heroicon-o-x-circle'),
-
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('category_id')
                     ->relationship('category', 'name')
             ])
+            ->searchable()
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\DeleteAction::make(),
@@ -71,7 +78,7 @@ class ProductResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ])->defaultPaginationPageOption(25)->extremePaginationLinks();
     }
 
     public static function getRelations(): array
