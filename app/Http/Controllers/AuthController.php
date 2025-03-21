@@ -8,6 +8,34 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:sanctum');
+    // }
+    public function check(Request $request)
+    {
+        // return response($request);
+        $user = $request->user(); // Lấy người dùng đã xác thực qua Sanctum
+
+        if (!$user) {
+            return response()->json(['error' => 'Unauthenticated'], 401);
+        }
+
+        return response()->json([
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'avatar' => $user->avatar ?? null,
+            ],
+            'message' => 'User is authenticated',
+        ], 200);
+    }
+    public function user(Request $request)
+    {
+        $user = $request->user();
+        return response()->json(['user' => $user], 200);
+    }
     public function register(Request $request)
     {
         $request->validate([
