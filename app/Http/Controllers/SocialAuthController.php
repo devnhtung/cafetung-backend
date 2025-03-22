@@ -44,6 +44,7 @@ class SocialAuthController extends Controller
                 'token' => $token, // Gửi token Sanctum
             ];
             // Chuyển hướng về frontend với thông tin người dùng
+            return env('FRONTEND_APP_URL');
             return redirect(env('FRONTEND_APP_URL') . "/api/auth/callback?user=" . urlencode(json_encode($userData)));
         } catch (\Exception $e) {
             \Log::error('Facebook callback error: ' . $e->getMessage());
