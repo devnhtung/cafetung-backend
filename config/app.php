@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Cafe'),
+    'fontend_url' => env('FRONTEND_APP_URL', 'localhost:3000'),
 
     /*
     |--------------------------------------------------------------------------
