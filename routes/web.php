@@ -10,5 +10,3 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login/zalo', [SocialAuthController::class, 'redirectToZalo'])->name('login.zalo');
-Route::get('/login/zalo/callback', [SocialAuthController::class, 'handleZaloCallback']);

@@ -13,7 +13,7 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasApiTokens;
 
-    protected $fillable = ['name', 'email', 'password', 'role', 'phone', 'address', 'facebook_id'];
+    protected $fillable = ['name', 'email', 'password', 'role', 'phone', 'address', 'facebook_id', 'avatar'];
 
     protected $hidden = [
         'password',

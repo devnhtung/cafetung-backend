@@ -20,8 +20,9 @@ class SocialAuthController extends Controller
     {
         try {
             $facebookUser = Socialite::driver('facebook')->stateless()->user();
-
+            // return response()->json(['facebook_id' => gettype($facebookUser->getId())]);
             $user = User::where('facebook_id', $facebookUser->getId())->first();
+            // return response()->json(['user' => $user]);
             if (!$user) {
                 $userData = [
                     'facebook_id' => $facebookUser->getId(),
