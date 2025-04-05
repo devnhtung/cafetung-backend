@@ -3,51 +3,48 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Actions\CreateAction;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Grid;
 
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
+    protected static ?string $navigationLabel = 'Sản phẩm';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-
-                FileUpload::make('image')->image()->label("Hình"),
-                Group::make()
+                Grid::make(3)
                     ->schema([
-                        Select::make('category_id')
-                            ->relationship('category', 'name')
-                            ->label("Danh mục")
-                            ->required(),
-                        TextInput::make('name')->label('tên')->required(),
-                        MarkdownEditor::make('description')->label('Mô tả')->columnSpan(2),
-                        TextInput::make('price')->label('giá')->numeric()->required(),
-                        Toggle::make('is_available')->label('Hoạt động')->default(true),
+                        Group::make()
+                            ->schema([
+                                Select::make('category_id')
+                                    ->relationship('category', 'name')
+                                    ->label("Danh mục")
+                                    ->required(),
+                                TextInput::make('name')->label('tên')->required(),
+                                MarkdownEditor::make('description')->label('Mô tả'),
+                                TextInput::make('price')->label('giá')->numeric()->required(),
+                                Toggle::make('is_available')->label('Hoạt động')->default(true),
+                            ])->columnSpan(2),
+                        FileUpload::make('image')->image()->label("Hình")->columnSpan(1),
                     ]),
+
             ]);
     }
 

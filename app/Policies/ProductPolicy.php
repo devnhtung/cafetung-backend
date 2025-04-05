@@ -10,16 +10,16 @@ class ProductPolicy
 {
     public function create(User $user)
     {
-        return $user->role === 'staff';
+        return $user->role === 'manage' || $user->role === 'admin';
     }
 
     public function update(User $user, Product $product)
     {
-        return $user->role === 'staff';
+        return $user->role === 'manage' || $user->role === 'admin';
     }
 
     public function delete(User $user, Product $product)
     {
-        return $user->role === 'staff';
+        return $user->role === 'manage' || $user->role === 'admin';
     }
 }

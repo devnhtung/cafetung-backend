@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SliderResource\Pages;
-use App\Filament\Resources\SliderResource\RelationManagers;
 use App\Models\Slider;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -19,9 +18,7 @@ use Filament\Tables\Columns\TextColumn;
 class SliderResource extends Resource
 {
     protected static ?string $model = Slider::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected static ?string $navigationIcon = 'heroicon-o-photo';
     public static function form(Form $form): Form
     {
         return $form
