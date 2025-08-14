@@ -11,18 +11,18 @@ class CategoryPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user): bool
+    public function create(User $user)
     {
-        return $user->role === 'staff';
+        return $user->role === 'manage' || $user->role === 'admin';
     }
 
-    public function update(User $user, Category $category): bool
+    public function update(User $user)
     {
-        return $user->role === 'staff';
+        return $user->role === 'manage' || $user->role === 'admin';
     }
 
-    public function delete(User $user, Category $category): bool
+    public function delete(User $user)
     {
-        return $user->role === 'staff';
+        return $user->role === 'manage' || $user->role === 'admin';
     }
 }

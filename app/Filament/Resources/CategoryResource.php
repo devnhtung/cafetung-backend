@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\FileUpload;
 
 class CategoryResource extends Resource
 {
@@ -26,7 +27,9 @@ class CategoryResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->label('Tên')->required(),
-                MarkdownEditor::make('description')->label('Mô tả')->columnSpan(2)
+                MarkdownEditor::make('description')->label('Mô tả')->columnSpan(2),
+                FileUpload::make('image')->label('Hình ảnh')->disk('public')->directory('categories')->image()->required(),
+                FileUpload::make('icon')->label('Biểu tượng')->disk('public')->directory('categories')->image()->required(),
             ]);
     }
 
@@ -35,7 +38,8 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name'),
-                TextColumn::make('name'),
+                TextColumn::make('image')->label('Hình ảnh'),
+                TextColumn::make('icon')->label('Biểu tượng'),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('name')

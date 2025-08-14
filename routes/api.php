@@ -52,6 +52,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/employee-details/{id}', [EmployeeController::class, 'updateDetail']); // Cập nhật employee_detail
     Route::delete('/employees/{id}', [EmployeeController::class, 'destroy']);
 });
+Route::get('/shifts/employee/{id}', [ShiftController::class, 'getEmployeeShifts']);
 Route::get('/employee-details', [EmployeeController::class, 'getDetails']);
 Route::get('/shift-types', [ShiftTypeController::class, 'index']);
 Route::get('/shift-types/{id}/tasks', [ShiftTypeController::class, 'getTasks']);
