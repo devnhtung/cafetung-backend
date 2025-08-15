@@ -28,8 +28,8 @@ class CategoryResource extends Resource
             ->schema([
                 TextInput::make('name')->label('Tên')->required(),
                 MarkdownEditor::make('description')->label('Mô tả')->columnSpan(2),
-                FileUpload::make('image')->label('Hình ảnh')->disk('public')->directory('categories')->image()->required(),
-                FileUpload::make('icon')->label('Biểu tượng')->disk('public')->directory('categories')->image()->required(),
+                FileUpload::make('image')->label('Hình ảnh')->disk('public')->directory('categories')->image(),
+                FileUpload::make('icon')->label('Biểu tượng')->disk('public')->directory('categories')->image(),
             ]);
     }
 
