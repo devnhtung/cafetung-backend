@@ -62,5 +62,6 @@ Route::get('/shift-registrations/{id}/tasks', [ShiftRegistrationController::clas
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/sliders', [SliderController::class, 'index']);
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/categories/{id}/products', [CategoryController::class, 'products']);
 Route::get('/auth/facebook', [SocialAuthController::class, 'redirectToFacebook']);
 Route::get('/auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback']);

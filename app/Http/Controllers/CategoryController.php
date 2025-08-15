@@ -12,4 +12,12 @@ class CategoryController extends Controller
         $categories = Category::withCount('products')->get();
         return response()->json($categories);
     }
+    public function products($id)
+    {
+        $category = Category::with('products')->findOrFail($id);
+        return response()->json([
+            'data' => $category->products,
+            'message' => 'Products retrieved successfully',
+        ]);
+    }
 }
