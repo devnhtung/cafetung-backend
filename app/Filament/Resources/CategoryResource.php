@@ -15,6 +15,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Toggle;
 
 class CategoryResource extends Resource
 {
@@ -30,6 +31,7 @@ class CategoryResource extends Resource
                 MarkdownEditor::make('description')->label('Mô tả')->columnSpan(2),
                 FileUpload::make('image')->label('Hình ảnh')->disk('public')->directory('categories')->image(),
                 FileUpload::make('icon')->label('Biểu tượng')->disk('public')->directory('categories')->image(),
+                Toggle::make('is_active')->label('Kích hoạt')->required(),
             ]);
     }
 
@@ -38,6 +40,7 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name'),
+                TextColumn::make('is_active')->label('Kích hoạt')->formatStateUsing(fn($state) => $state ? 'Yes' : 'No'),
                 TextColumn::make('image')->label('Hình ảnh'),
                 TextColumn::make('icon')->label('Biểu tượng'),
             ])

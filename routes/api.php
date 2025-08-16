@@ -17,6 +17,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EmployeeEvaluationController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\NotificationController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -65,3 +66,4 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{id}/products', [CategoryController::class, 'products']);
 Route::get('/auth/facebook', [SocialAuthController::class, 'redirectToFacebook']);
 Route::get('/auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback']);
+Route::get('/notifications', [NotificationController::class, 'index']);

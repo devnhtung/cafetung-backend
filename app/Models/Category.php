@@ -11,6 +11,7 @@ class Category extends Model
         'description',
         'image',
         'icon',
+        'is_active',
     ];
 
     public function products()
