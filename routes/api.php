@@ -19,6 +19,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\ZaloController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -69,3 +70,4 @@ Route::get('/auth/facebook', [SocialAuthController::class, 'redirectToFacebook']
 Route::get('/auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback']);
 Route::get('/notifications', [NotificationController::class, 'index']);
 Route::get('/stores', [StoreController::class, 'index']);
+Route::get('/users/zalo/getphone', [ZaloController::class, 'getPhone']);
