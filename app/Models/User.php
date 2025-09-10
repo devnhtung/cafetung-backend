@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function employeeDetails()
     {
-        return $this->hasOne(EmployeeDetails::class);
+        return $this->hasOne(EmployeeDetail::class);
     }
 
     public function shiftRegistrations()

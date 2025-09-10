@@ -51,7 +51,8 @@ class UserResource extends Resource
                     ->options([
                         'customer' => 'Khách hàng',
                         'staff' => 'Nhân viên',
-                        'manage' => "Quản lý"
+                        'manage' => "Quản lý",
+                        'admin' => "Quản trị hệ thống"
                     ])
                     ->default('customer')
                     ->required(),
@@ -83,6 +84,8 @@ class UserResource extends Resource
                     ->options([
                         'customer' => 'Khách hàng',
                         'staff' => 'Nhân viên',
+                        'manage' => "Quản lý",
+                        'admin' => "Quản trị hệ thống"
                     ])
                     ->label('Lọc theo vai trò'),
             ])

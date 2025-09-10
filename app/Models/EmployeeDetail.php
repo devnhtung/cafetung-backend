@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EmployeeDetails extends Model
+class EmployeeDetail extends Model
 {
     protected $table = 'employee_details';
     protected $fillable = [
@@ -19,8 +19,11 @@ class EmployeeDetails extends Model
         'bank_account',
         'emergency_contact_name',
         'emergency_contact_phone',
+        'experience',
+        'skills',
+        'status',
+        'notes',
     ];
-
     protected $casts = [
         'date_of_birth' => 'date',
         'hire_date' => 'date',

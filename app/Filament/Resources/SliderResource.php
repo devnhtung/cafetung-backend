@@ -14,11 +14,15 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\CreateAction;
+use Filament\Tables\Actions\ActionGroup;
 
 class SliderResource extends Resource
 {
     protected static ?string $model = Slider::class;
     protected static ?string $navigationIcon = 'heroicon-o-photo';
+    protected static ?string $navigationLabel = 'Ảnh trình chiếu';
+    protected static ?string $pluralLabel = 'Danh sách trình chiếu';
     public static function form(Form $form): Form
     {
         return $form
@@ -52,21 +56,17 @@ class SliderResource extends Resource
                 Tables\Filters\SelectFilter::make('title')
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ForceDeleteAction::make(),
-                Tables\Actions\RestoreAction::make(),
+                ActionGroup::make([
+                    Tables\Actions\EditAction::make()->label('Sửa'),
+                    Tables\Actions\DeleteAction::make()->label('Xoá'),
+                ])
+                    ->label('')
+                    ->icon('heroicon-o-cog')
+                    ->button(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

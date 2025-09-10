@@ -71,3 +71,4 @@ Route::get('/auth/facebook/callback', [SocialAuthController::class, 'handleFaceb
 Route::get('/notifications', [NotificationController::class, 'index']);
 Route::get('/stores', [StoreController::class, 'index']);
 Route::get('/users/zalo/getphone', [ZaloController::class, 'getPhone']);
+Route::post('/zalo/get-phone', [ZaloController::class, 'getPhoneNumber']);
