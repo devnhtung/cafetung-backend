@@ -25,7 +25,7 @@ class ZaloController extends Controller
             'access_token' => $accessToken,
             'code' => $code,
             'secret_key' => $secretKey,
-        ])->get('https://nckh.hueic.edu.vn/zalo-api/v2.0/me/info');
+        ])->get('https://nckh.hueic.edu.vn/zalo-api/me/info');
 
         // Xử lý response
         if ($response->successful()) {
